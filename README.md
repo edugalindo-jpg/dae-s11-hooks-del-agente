@@ -112,6 +112,7 @@ Trabajo resuelto por **Edu Edward Galindo Huamán**.
 - **Informe:** `docs/Entregable_S11_Hooks_del_Agente_Edu_Galindo.pdf` (y su `.docx`).
 - **Capturas reales:** `docs/capturas/` — 10 de la aplicación, 5 de terminal y 1 de VS Code.
 - **Registros completos:** `docs/logs/` — salida de cada corrida, antes y después.
+- **Índice de evidencias:** `docs/INDICE_EVIDENCIAS.md` — qué demuestra cada captura y cada registro.
 - **Reproducir las capturas:** con `npm run dev` levantado, `python docs/scripts/capturar_app.py`.
 - **Regenerar el informe:** `python docs/scripts/generar_entregable.py` y exportar el DOCX a PDF.
 
