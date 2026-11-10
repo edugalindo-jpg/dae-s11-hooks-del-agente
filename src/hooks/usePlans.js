@@ -1,32 +1,42 @@
-// TODO (usePlans) — carga los planes del agente con los tres estados de una petición.
-//
-// Qué debe hacer:
-//   usePlans(fetchPlans) recibe una función que devuelve una promesa de planes (en la app es
-//   `fetchPlans` de src/lib/api.js, que simula la red) y devuelve:
-//
-//     { status, plans, error, reload }
-//
-//   · status: "loading" | "ready" | "error".
-//   · plans:  [] mientras carga y si falla; el arreglo recibido cuando llega bien.
-//   · error:  null salvo en "error", donde es el error con el que falló la promesa.
-//   · reload(): vuelve a pedir los planes. El estado vuelve a "loading" (plans [] y error null).
-//
-// Reglas:
-//   1. Pide los planes al montar y cada vez que cambie `fetchPlans` o se llame a reload().
-//      Quien llama pasa una función ESTABLE (no una nueva en cada dibujado), si no el efecto no terminaría nunca.
-//   2. Resuelve los TRES estados: si la promesa se rechaza, el estado es "error" (no se queda en "loading").
-//   3. IGNORA LA RESPUESTA VIEJA: si el efecto se repitió (reload) o el componente se desmontó antes de que
-//      llegue una respuesta, esa respuesta no puede tocar el estado. Una carrera de peticiones es un error
-//      de verdad: la respuesta lenta de antes pisaría a la nueva.
-//
-// Pistas:
-//   · useState para el estado; un segundo useState (un contador) para forzar la repetición en reload().
-//   · useEffect con la dependencia correcta. Dentro: `let cancelled = false;`, pide los datos, y en los
-//     dos caminos (.then ok y error) mira `if (!cancelled)` antes de guardar. La LIMPIEZA pone cancelled = true.
-//   · useCallback para que reload tenga siempre la misma identidad.
-//
-// Hoy este hook se queda en "loading" para siempre y nunca pide nada: por eso fallan sus pruebas.
-// Ejecuta `npm test -- usePlans` y mira cuáles.
+import { useCallback, useEffect, useState } from "react";
+
+const INITIAL = { status: "loading", plans: [], error: null };
+
+/**
+ * Loads the agent plans and exposes the three states of a request: loading, ready and error.
+ *
+ * `fetchPlans` must be a stable function (module level or wrapped in useCallback); when it
+ * changes the hook asks again. `reload()` repeats the request and returns to loading.
+ *
+ * Every effect run owns a `cancelled` flag. The cleanup sets it to true, so the answer of a
+ * superseded request (a reload or an unmount) can never overwrite the newest one: that is the
+ * request race the tests call "la respuesta vieja".
+ */
 export default function usePlans(fetchPlans) {
-  return { status: "loading", plans: [], error: null, reload: () => {} };
+  const [state, setState] = useState(INITIAL);
+  const [attempt, setAttempt] = useState(0);
+
+  useEffect(() => {
+    let cancelled = false;
+    setState(INITIAL);
+
+    fetchPlans().then(
+      (plans) => {
+        if (!cancelled) setState({ status: "ready", plans, error: null });
+      },
+      (error) => {
+        if (!cancelled) setState({ status: "error", plans: [], error });
+      }
+    );
+
+    return () => {
+      cancelled = true;
+    };
+  }, [fetchPlans, attempt]);
+
+  const reload = useCallback(() => {
+    setAttempt((current) => current + 1);
+  }, []);
+
+  return { ...state, reload };
 }

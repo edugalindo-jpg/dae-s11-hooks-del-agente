@@ -97,3 +97,23 @@ rechaza, así que son rápidas (unos 3 segundos en total) y dan siempre el mismo
 
 Código, nombres de variables y comentarios en inglés; explicaciones y entregables en español. Componentes en
 PascalCase y hooks con el prefijo `use`.
+
+## Entregable de la semana 11 (extra)
+
+Trabajo resuelto por **Edu Edward Galindo Huamán**.
+
+| Resultado | Estado |
+|---|---|
+| `npm test` (modo team, `src/hooks`) | 57/57 en verde |
+| `npm run test:ai` (modo ai, `src/ai`) | 57/57 en verde (6 fallos corregidos) |
+| `npm run build` | correcto |
+
+- **Informe:** `docs/Entregable_S11_Hooks_del_Agente_Edu_Galindo.pdf` (y su `.docx`).
+- **Capturas reales:** `docs/capturas/` — 10 de la aplicación, 5 de terminal y 1 de VS Code.
+- **Registros completos:** `docs/logs/` — salida de cada corrida, antes y después.
+- **Reproducir las capturas:** con `npm run dev` levantado, `python docs/scripts/capturar_app.py`.
+- **Regenerar el informe:** `python docs/scripts/generar_entregable.py` y exportar el DOCX a PDF.
+
+El contador de pendientes se calcula en `App` (sección 2.4 del informe): es un valor derivado de los planes y de las
+decisiones, y `Header` solo recibe el número.
+

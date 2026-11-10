@@ -1,18 +1,18 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function useDebounce(value, delay) {
   const [debounced, setDebounced] = useState(value);
-  const timer = useRef(null);
 
   useEffect(() => {
-    timer.current = setTimeout(() => {
+    const timer = setTimeout(() => {
       setDebounced(value);
     }, delay);
-  }, [value, delay]);
 
-  useEffect(() => {
-    return () => clearTimeout(timer.current);
-  }, []);
+    // FIX: the timer is cancelled on every change and on unmount, not only on unmount.
+    // The previous version kept a cleanup effect with [] and stored the timer in a ref, so the
+    // timers of superseded values stayed alive and emitted intermediate values later.
+    return () => clearTimeout(timer);
+  }, [value, delay]);
 
   return debounced;
 }
