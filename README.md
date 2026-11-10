@@ -110,6 +110,7 @@ Trabajo resuelto por **Edu Edward Galindo Huamán**.
 
 - **Repositorio:** https://github.com/edugalindo-jpg/dae-s11-hooks-del-agente
 - **Informe:** `docs/Entregable_S11_Hooks_del_Agente_Edu_Galindo.pdf` (y su `.docx`).
+- **PDF de capturas:** `docs/Evidencias_Capturas_S11_Edu_Galindo.pdf` — 18 páginas, una captura por página.
 - **Capturas reales:** `docs/capturas/` — 10 de la aplicación, 5 de terminal y 1 de VS Code.
 - **Registros completos:** `docs/logs/` — salida de cada corrida, antes y después.
 - **Índice de evidencias:** `docs/INDICE_EVIDENCIAS.md` — qué demuestra cada captura y cada registro.

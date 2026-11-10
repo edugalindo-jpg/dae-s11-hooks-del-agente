@@ -3,6 +3,7 @@
 **Estudiante:** Edu Edward Galindo Huamán
 **Repositorio:** https://github.com/edugalindo-jpg/dae-s11-hooks-del-agente
 **Informe:** `Entregable_S11_Hooks_del_Agente_Edu_Galindo.pdf` (28 páginas)
+**PDF de capturas:** `Evidencias_Capturas_S11_Edu_Galindo.pdf` (18 páginas, una captura por página)
 
 Esta carpeta reúne las **16 capturas reales** y los **8 registros completos** que respaldan el
 laboratorio. No hay montajes ni capturas retocadas: las imágenes de la aplicación salen del
