@@ -108,6 +108,7 @@ Trabajo resuelto por **Edu Edward Galindo Huamán**.
 | `npm run test:ai` (modo ai, `src/ai`) | 57/57 en verde (6 fallos corregidos) |
 | `npm run build` | correcto |
 
+- **Repositorio:** https://github.com/edugalindo-jpg/dae-s11-hooks-del-agente
 - **Informe:** `docs/Entregable_S11_Hooks_del_Agente_Edu_Galindo.pdf` (y su `.docx`).
 - **Capturas reales:** `docs/capturas/` — 10 de la aplicación, 5 de terminal y 1 de VS Code.
 - **Registros completos:** `docs/logs/` — salida de cada corrida, antes y después.
